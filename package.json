@@ -73,7 +73,7 @@
         "yarn": "1.22.19"
     },
     "lint-staged": {
-        "*": "yarn lint:fix"
+        "*.{js,ts,json,hbs}": "eslint --fix --cache"
     },
     "nyc": {
         "extends": "@istanbuljs/nyc-config-typescript",
