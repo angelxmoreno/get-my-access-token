@@ -5,11 +5,15 @@ import cors from 'cors';
 import { applyAuth, authorizationChecker, currentUserChecker } from '@auth/index';
 import CustomErrorHandler from '@server/CustomErrorHandler';
 import { registerView } from './views/engine';
+import logger from 'morgan';
+import csrf from 'csurf';
 
 const server = express();
 server.use(compression());
+server.use(logger('combined'));
 server.use(cors());
 registerView(server);
+server.use(csrf());
 
 applyAuth(server);
 useExpressServer(server, {
