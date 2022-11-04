@@ -3,7 +3,7 @@ import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
 import { applyAuth, authorizationChecker, currentUserChecker } from '@auth/index';
-import CustomErrorHandler from "@server/CustomErrorHandler";
+import CustomErrorHandler from '@server/CustomErrorHandler';
 
 const server = express();
 server.use(compression());

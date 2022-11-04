@@ -11,3 +11,5 @@ const asNumber = (path: string): number => Number(get(process.env, path, 0));
 const isDev = () => process.env.NODE_ENV === 'development';
 const Env ={ asString, asBoolean, asNumber, isDev }
 export default Env;
+
+
