@@ -1,26 +1,27 @@
-import env from '@utils/Env';
+import Env from '@utils/Env';
 
 export default {
     node: {
-        baseUrl: env.asString('BASE_URL'),
-        port: env.asNumber('PORT'),
+        baseUrl: Env.asString('BASE_URL'),
+        port: Env.asNumber('PORT'),
     },
+    sessionSecret: Env.asString('SESSION_SECRET'),
     auth: {
         passport: {
-            callbackBaseUrl: env.asString('CALLBACK_BASE_URL'),
+            callbackBaseUrl: Env.asString('CALLBACK_BASE_URL'),
             strategies: {
                 google: {
-                    clientID: env.asString('GOOGLE_CLIENT_ID'),
-                    clientSecret: env.asString('GOOGLE_CLIENT_SECRET'),
+                    clientID: Env.asString('GOOGLE_CLIENT_ID'),
+                    clientSecret: Env.asString('GOOGLE_CLIENT_SECRET'),
                 },
                 facebook: {
-                    clientID: env.asString('FACEBOOK_CLIENT_ID'),
-                    clientSecret: env.asString('FACEBOOK_CLIENT_SECRET'),
+                    clientID: Env.asString('FACEBOOK_CLIENT_ID'),
+                    clientSecret: Env.asString('FACEBOOK_CLIENT_SECRET'),
                 },
             },
         },
     },
     redis: {
-        url: env.asString('REDIS_URL'),
+        url: Env.asString('REDIS_URL'),
     },
 };
