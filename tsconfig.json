@@ -1,63 +1,36 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist",
-    "module": "commonjs",
-    "target": "es2017",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "importHelpers": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "es2017",
-      "esnext.asynciterable"
-    ],
-    "noEmit": false,
-    "pretty": true,
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "baseUrl": "src",
-    "paths": {
-      "@auth/*": [
-        "auth/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@controllers/*": [
-        "controllers/*"
-      ],
-      "@errors/*": [
-        "errors/*"
-      ],
-      "@server/*": [
-        "middleware/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@validators/*": [
-        "validators/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ]
-    }
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.json",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist",
+        "module": "commonjs",
+        "target": "es2017",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "importHelpers": true,
+        "allowJs": false,
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["es2017", "esnext.asynciterable"],
+        "noEmit": false,
+        "pretty": true,
+        "resolveJsonModule": true,
+        "typeRoots": ["node_modules/@types"],
+        "baseUrl": "src",
+        "paths": {
+            "@auth/*": ["auth/*"],
+            "@config/*": ["config/*"],
+            "@controllers/*": ["controllers/*"],
+            "@errors/*": ["errors/*"],
+            "@server/*": ["middleware/*"],
+            "@services/*": ["services/*"],
+            "@validators/*": ["validators/*"],
+            "@utils/*": ["utils/*"]
+        }
+    },
+    "include": ["src/**/*.*"],
+    "exclude": ["node_modules", "dist"]
 }

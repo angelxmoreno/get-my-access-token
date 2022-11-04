@@ -29,15 +29,14 @@ const afterCallback = ({ user }: Request, res: Response) => {
 export const applyAuth = (app: Application) => {
     const routes = express();
 
-    const strategies = {
-    };
+    const strategies = {};
 
     const options: AuthenticateOptions = { session: false };
     Object.entries(strategies).forEach(([name, strategy]) => {
         const path = `/auth/${name}`;
         routes.get(path + '/callback', passport.authenticate(name, options), afterCallback);
         routes.get(path, passport.authenticate(name, options), afterCallback);
-
+        console.log({ strategy });
         //passport.use(strategy);
     });
 
