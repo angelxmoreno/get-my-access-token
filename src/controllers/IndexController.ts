@@ -1,4 +1,5 @@
-import {Get, JsonController, Render} from 'routing-controllers';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { Get, JsonController, Render } from 'routing-controllers';
 
 @JsonController('/')
 export class IndexController {
@@ -8,7 +9,5 @@ export class IndexController {
 
     @Get('about')
     @Render('about')
-    about() {
-
-    }
+    about() {}
 }

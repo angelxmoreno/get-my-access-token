@@ -1,5 +1,5 @@
-import forViewHelper from "./forViewHelper";
+import forViewHelper from './forViewHelper';
 
 export default {
-    for: forViewHelper
-}
+    for: forViewHelper,
+};

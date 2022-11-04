@@ -1,4 +1,4 @@
-import {HelperOptions} from 'handlebars';
+import { HelperOptions } from 'handlebars';
 
 const forViewHelper = (from: number, to: number, incr: number, block: HelperOptions) => {
     let accum = '';
@@ -7,6 +7,6 @@ const forViewHelper = (from: number, to: number, incr: number, block: HelperOpti
     }
 
     return accum;
-}
+};
 
 export default forViewHelper;
