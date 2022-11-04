@@ -1,9 +1,14 @@
-import { Get, JsonController } from 'routing-controllers';
+import {Get, JsonController, Render} from 'routing-controllers';
 
 @JsonController('/')
 export class IndexController {
     @Get('')
-    index() {
-        return 'hello world!';
+    @Render('index')
+    index() {}
+
+    @Get('about')
+    @Render('about')
+    about() {
+
     }
 }
