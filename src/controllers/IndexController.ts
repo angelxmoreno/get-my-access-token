@@ -1,18 +1,18 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { Get, JsonController, Render } from 'routing-controllers';
 import ModularAuthCollection from '@services/modular-auth/ModularAuthCollection';
+import { Controller, Get, Response } from '@decorators/express';
+import * as e from 'express';
 
-@JsonController('/')
+@Controller('/')
 export class IndexController {
-    @Get('')
-    @Render('index')
-    index() {
-        return {
-            ModularAuthCollection,
-        };
+    @Get('/')
+    index(@Response() res: e.Response) {
+        res.render('index', {
+            modularAuths: ModularAuthCollection.asArray,
+        });
     }
 
-    @Get('about')
-    @Render('about')
-    about() {}
+    @Get('/about')
+    async about(@Response() res: e.Response) {
+        res.render('about');
+    }
 }
