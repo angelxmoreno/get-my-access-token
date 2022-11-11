@@ -19,7 +19,7 @@ const applySession = (server: Application) => {
         store: sessionStore,
         secret: appConfig.sessionSecret,
         resave: true,
-        saveUninitialized: false,
+        saveUninitialized: true,
         cookie: { secure: makeSecure },
     };
 
