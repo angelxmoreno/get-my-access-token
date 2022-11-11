@@ -1,32 +1,20 @@
 import passport from 'passport';
 import { Application } from 'express';
-import { AuthorizationChecker } from 'routing-controllers/types/AuthorizationChecker';
-import { CurrentUserChecker } from 'routing-controllers/types/CurrentUserChecker';
-import { Action } from 'routing-controllers';
-import guestUserStrategy from '@auth/guestUserStrategy';
-import { AppUser } from '@auth/AppUser';
-
-export const authorizationChecker: AuthorizationChecker = async ({ request }: Action, roles: string[]) => {
-    return new Promise(resolve => {
-        passport.authenticate('guest-user', { session: true }, (w, user: AppUser, error) => {
-            request.session.user = user;
-            if (!user || error) resolve(false);
-            if (!!user && (roles.length === 0 || roles.includes(user.role))) resolve(true);
-        })(request);
-    });
-};
-
-export const currentUserChecker: CurrentUserChecker = async ({ request }: Action) => {
-    return !!request.session.user ? request.session.user : false;
-};
 
 export const applyAuth = (app: Application) => {
-    passport.use('guest-user', guestUserStrategy);
-
-    app.use(passport.initialize());
-    app.use(passport.session());
+    passport.serializeUser((user, cb) => {
+        console.log('serializeUser', user);
+        cb(null, user);
+    });
+    passport.deserializeUser((user, cb) => {
+        console.log('deserializeUser', user);
+        cb(null, user);
+    });
     app.use((req, res, next) => {
         req.passport = passport;
+        res.locals.currentUser = req.session.user;
         next();
     });
+    app.use(passport.initialize());
+    app.use(passport.session());
 };

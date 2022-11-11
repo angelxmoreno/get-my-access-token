@@ -5,8 +5,6 @@ import Env from '@utils/Env';
 import session_file_store, { Options } from 'session-file-store';
 
 const applySession = (server: Application) => {
-    const makeSecure = !Env.isDev();
-
     const FileStore = session_file_store(session);
     const fileStoreOptions: Options = {
         path: './sessions',
@@ -14,16 +12,16 @@ const applySession = (server: Application) => {
         fileExtension: '.json',
     };
 
-    const sessionStore = makeSecure ? new MemoryStore() : new FileStore(fileStoreOptions);
+    const sessionStore = Env.isDev() ? new FileStore(fileStoreOptions) : new MemoryStore();
     const sessionOptions: SessionOptions = {
         store: sessionStore,
         secret: appConfig.sessionSecret,
         resave: true,
         saveUninitialized: true,
-        cookie: { secure: makeSecure },
+        cookie: { secure: true },
     };
 
-    server.set('trust proxy', makeSecure ? 1 : 0);
+    server.set('trust proxy', 1);
     server.use(session(sessionOptions));
 };
 

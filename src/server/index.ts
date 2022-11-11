@@ -10,9 +10,9 @@ import { IndexController } from '@controllers/IndexController';
 import { AuthController } from '@controllers/AuthController';
 import https, { ServerOptions } from 'https';
 import fs from 'fs';
+import { GuestUserController } from '@controllers/GuestUserController';
 
 const server = express();
-server.set('etag', false);
 
 applySession(server);
 applyAuth(server);
@@ -33,8 +33,8 @@ server.use(async (req, res, next) => {
     await Promise.all(promises);
     next();
 });
-// server.use(csrf({ cookie: false }));
-attachControllers(server, [IndexController, AuthController]);
+
+attachControllers(server, [IndexController, AuthController, GuestUserController]);
 
 export const createServer = (port, cb) => {
     const options: ServerOptions = {

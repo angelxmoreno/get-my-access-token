@@ -9,9 +9,9 @@ import { ValidatedObject } from '@validators/ValidatorInterface';
 import BodyValidatorMiddleware from '../middleware/BodyValidatorMiddleware';
 import { CsrfMiddleware } from '../middleware/CsrfMiddleware';
 
-@Controller('/auth')
+@Controller('/auth', [AuthenticateMiddleware])
 export class AuthController {
-    @Get('/form/:authKey', [AuthenticateMiddleware, CsrfMiddleware])
+    @Get('/form/:authKey', [CsrfMiddleware])
     async authForm(@Request() req: e.Request, @Response() res: e.Response) {
         const modularAuth = this.getModularAuthFromRequest(req);
         const validation = req.session.validation;
@@ -34,7 +34,7 @@ export class AuthController {
         return res.render('authForm', responseBody);
     }
 
-    @Post('/form-verify/:authKey', [AuthenticateMiddleware, CsrfMiddleware, BodyValidatorMiddleware(AuthFormData)])
+    @Post('/form-verify/:authKey', [CsrfMiddleware, BodyValidatorMiddleware(AuthFormData)])
     async authFormVerify(@Request() req: e.Request, @Response() res: e.Response) {
         const modularAuth = this.getModularAuthFromRequest(req);
         const validatedAuthForm: ValidatedObject<AuthFormData> = req.body;
