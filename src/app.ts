@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import appConfig from '@config/index';
-import server from './server';
+import { createServer } from './server';
 
 const PORT = appConfig.node.port;
 const BASE_URL = appConfig.node.baseUrl;
 console.time('serverStart');
 (async () => {
-    server.listen(PORT, () => {
-        console.info(`Starting server on ${BASE_URL}:${PORT}`);
+    createServer(PORT, () => {
+        console.info(`Starting server on ${BASE_URL}`);
     });
 })()
     .then(() => console.timeEnd('serverStart'))

@@ -18,6 +18,15 @@
                 </svg>
                 <strong>GetYourTokens</strong>
             </a>
+            <div class="ms-auto me-3">
+                {{#unless currentUser}}
+                    <a class="btn btn-secondary btn-sm" href="/guest-user/login">Create Secure Session</a>
+                {{/unless}}
+                {{#if currentUser}}
+                    <span class="navbar-text me-2">Guest User: {{currentUser.username}}</span>
+                    <a class="btn btn-secondary btn-sm" href="/guest-user/logout">Clear Session</a>
+                {{/if}}
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
                     aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

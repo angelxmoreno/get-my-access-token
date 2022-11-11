@@ -1,26 +1,17 @@
-import env from '@utils/Env';
+import Env from '@utils/Env';
+import { ModularAuthClass } from '@services/modular-auth/ModularAuthInterface';
+import FacebookModularAuth from '@services/modular-auth/adapters/FacebookModularAuth';
+import GoogleModularAuth from '@services/modular-auth/adapters/GoogleModularAuth';
+import PinterestModularAuth from '@services/modular-auth/adapters/PinterestModularAuth';
+
+const modularClasses: ModularAuthClass[] = [GoogleModularAuth, FacebookModularAuth, PinterestModularAuth];
 
 export default {
     node: {
-        baseUrl: env.asString('BASE_URL'),
-        port: env.asNumber('PORT'),
+        host: Env.asString('HOST'),
+        port: Env.asNumber('PORT'),
+        baseUrl: `${Env.asString('HOST')}:${Env.asString('PORT')}`,
     },
-    auth: {
-        passport: {
-            callbackBaseUrl: env.asString('CALLBACK_BASE_URL'),
-            strategies: {
-                google: {
-                    clientID: env.asString('GOOGLE_CLIENT_ID'),
-                    clientSecret: env.asString('GOOGLE_CLIENT_SECRET'),
-                },
-                facebook: {
-                    clientID: env.asString('FACEBOOK_CLIENT_ID'),
-                    clientSecret: env.asString('FACEBOOK_CLIENT_SECRET'),
-                },
-            },
-        },
-    },
-    redis: {
-        url: env.asString('REDIS_URL'),
-    },
+    sessionSecret: Env.asString('SESSION_SECRET'),
+    modularClasses,
 };

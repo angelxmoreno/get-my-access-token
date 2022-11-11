@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
-import { EnvClass } from '../../src/utils/Env';
+import { EnvClass } from '../../../src/utils/Env';
 
 const data: NodeJS.Dict<string> = {
     aNumber: '5',
