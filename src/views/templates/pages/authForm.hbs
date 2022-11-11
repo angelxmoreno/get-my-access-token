@@ -1,0 +1,14 @@
+<section class="py-5 container">
+    <h1>{{modularAuth.name}} Authentication Setup Form</h1>
+    <form action="/auth/form-verify/{{modularAuth.key}}" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+        {{floatingInput 'clientId' label='Client ID' postData=postData errors=errors}}
+        {{floatingInput 'clientSecret' 'Client Secret' postData errors}}
+        {{floatingInput 'scopes' 'Scopes' postData errors}}
+        {{floatingInput 'callbackUrl' 'Callback Url' postData errors disabled=true}}
+
+        <button type="submit"  class="btn btn-block btn-social btn-lg btn-{{modularAuth.key}}">
+            <i class="fa fa-{{modularAuth.key}}"></i> Get your {{modularAuth.name}} tokens
+        </button>
+    </form>
+</section>

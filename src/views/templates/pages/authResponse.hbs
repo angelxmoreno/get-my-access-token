@@ -1,0 +1,17 @@
+<section class="py-5 container">
+    <h1>{{modularAuth.name}} Authentication Response </h1>
+       <fieldset>
+           <legend>Tokens</legend>
+           {{floatingInput 'accessToken' 'Access Token' postData disabled=true}}
+           {{floatingInput 'refreshToken' 'Refresh Token' postData disabled=true}}
+       </fieldset>
+
+    <fieldset>
+        <legend>Profile</legend>
+        {{floatingInput 'id' 'Identifier' postData disabled=true}}
+        {{floatingInput 'name' 'Name' postData disabled=true}}
+        {{floatingInput 'email' 'Email' postData disabled=true}}
+    </fieldset>
+
+        <button type="submit" class="btn btn-primary btn-lg">Authenticate</button>
+</section>
