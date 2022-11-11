@@ -1,15 +1,14 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
         "outDir": "./dist",
         "module": "commonjs",
-        "target": "es2017",
+        "target": "es6",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
         "importHelpers": true,
-        "allowJs": false,
+        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "declaration": true,
         "esModuleInterop": true,
@@ -18,16 +17,18 @@
         "noEmit": false,
         "pretty": true,
         "resolveJsonModule": true,
-        "typeRoots": ["node_modules/@types"],
+        "skipLibCheck": true,
+        "typeRoots": ["node_modules/@types", "./src/types"],
         "baseUrl": "src",
         "paths": {
             "@auth/*": ["auth/*"],
             "@config/*": ["config/*"],
             "@controllers/*": ["controllers/*"],
             "@errors/*": ["errors/*"],
-            "@server/*": ["middleware/*"],
+            "@server/*": ["server/*"],
             "@services/*": ["services/*"],
             "@validators/*": ["validators/*"],
+            "@views/*": ["views/*"],
             "@utils/*": ["utils/*"]
         }
     },

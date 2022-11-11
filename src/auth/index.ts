@@ -4,10 +4,11 @@ import { AuthorizationChecker } from 'routing-controllers/types/AuthorizationChe
 import { CurrentUserChecker } from 'routing-controllers/types/CurrentUserChecker';
 import { Action } from 'routing-controllers';
 import guestUserStrategy from '@auth/guestUserStrategy';
+import { AppUser } from '@auth/AppUser';
 
 export const authorizationChecker: AuthorizationChecker = async ({ request }: Action, roles: string[]) => {
     return new Promise(resolve => {
-        passport.authenticate('guest-user', { session: true }, (w, user, error) => {
+        passport.authenticate('guest-user', { session: true }, (w, user: AppUser, error) => {
             request.session.user = user;
             if (!user || error) resolve(false);
             if (!!user && (roles.length === 0 || roles.includes(user.role))) resolve(true);
@@ -24,4 +25,8 @@ export const applyAuth = (app: Application) => {
 
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use((req, res, next) => {
+        req.passport = passport;
+        next();
+    });
 };
