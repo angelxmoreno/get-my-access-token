@@ -1,15 +1,24 @@
-import ModularAuthInterface from '@services/modular-auth/ModularAuthInterface';
+import ModularAuthInterface, { ModularAuthClass } from '@services/modular-auth/ModularAuthInterface';
 import appConfig from '@config/index';
 
 export class ModularAuthCollectionClass {
-    collection: Record<string, ModularAuthInterface> = {};
+    protected collection: Map<string, ModularAuthInterface> = new Map();
 
-    constructor(data: ModularAuthInterface[] = []) {
-        data.forEach(datum => {
-            this.collection[datum.key] = datum;
+    constructor(data: ModularAuthClass[] = []) {
+        data.forEach(modularAuthClass => {
+            const instance = new modularAuthClass();
+            this.collection.set(instance.key, instance);
         });
+    }
+
+    get asArray(): ModularAuthInterface[] {
+        return Array.from(this.collection.values());
+    }
+
+    get(name: string): ModularAuthInterface | undefined {
+        return this.collection.get(name);
     }
 }
 
-const ModularAuthCollection = new ModularAuthCollectionClass(appConfig.modularAuth);
+const ModularAuthCollection = new ModularAuthCollectionClass(appConfig.modularClasses);
 export default ModularAuthCollection;
